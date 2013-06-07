@@ -99,6 +99,23 @@ if (jQuery != undefined) {
                 });
             });
             google.maps.event.trigger(marker, 'dragend');
+
+            // If model contains "map_zoom" field then add listeners to sync
+            // the field value with the map zoom level.
+            if($("#id_map_zoom")) {
+                google.maps.event.addListener(map, "zoom_changed", function() {
+                    $("#id_map_zoom").val(map.getZoom());
+                });
+                $("#id_map_zoom").change(function() {
+                    try {
+                        var zoom = $(this).val();
+                        map.setZoom(parseInt(zoom));
+                    } catch(e) {
+                        // Don't attempt to change zoom
+                    }
+                });
+                $("#id_map_zoom").trigger("change");
+            }
         });
         
     };
