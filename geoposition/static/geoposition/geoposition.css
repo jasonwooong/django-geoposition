@@ -41,3 +41,8 @@
 .geoposition-results li:first-child {
     border-top: 0;
 }
+
+.geoposition-widget .divider-vertical {
+    color: #ccc;
+    padding: 0 0.5em 0 0.5em;
+}
